@@ -1,0 +1,9 @@
+
+.colorTool{
+    background-color: #005F6E;
+    color: white;
+  }
+  .mat-toolbar .logo {
+    max-height: 30%; /* Ajusta la altura máxima del logo según el espacio disponible */
+    max-width: 30%; /* Ajusta el ancho máximo del logo según el espacio disponible */
+  }

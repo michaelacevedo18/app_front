@@ -1,0 +1,7 @@
+{
+    "/SACWS/api": {
+      "target": "https://10.46.4.44:4443",
+      "secure": false,
+      "changeOrigin": true
+    }
+}

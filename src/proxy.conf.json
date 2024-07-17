@@ -1,0 +1,7 @@
+{
+    "/api": {
+      "target": "https://sacwsuat.epm.com.co:60055",
+      "secure": false,
+      "changeOrigin": true
+    }
+  }
