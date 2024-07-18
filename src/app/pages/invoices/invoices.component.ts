@@ -75,7 +75,7 @@ export class InvoicesComponent implements OnInit {
   }
   cargarDatos22() {
     let data = null;     
-    this.sacService.getListServ2(this.clienteId).subscribe({
+    this.sacService.getCliente(this.clienteId).subscribe({
       next: (response: any[]) => {
         data = response; 
         if (data != null && data.length > 0) {
@@ -100,4 +100,5 @@ export class InvoicesComponent implements OnInit {
       }
     });
   }
+
 }

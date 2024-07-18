@@ -30,13 +30,14 @@ import { map, Observable, of, throwError } from 'rxjs';
 import { Cliente } from '../interfaces/clienteData';
 import { Invoice } from '../interfaces/invoiceData';
 import { tap, catchError } from 'rxjs/operators';
-
+import axios from 'axios';
 @Injectable({
   providedIn: 'root'
 })
 export class SacwsService {
 
   private apiUrl = 'https://sacwsuat.epm.com.co:60055/api/Clientes';
+  private apiUrlIp = 'https://10.46.4.44:4443/SACWS/api/Clientes';
   private apiUrlLogin = 'https://sacwsuat.epm.com.co:60055/api/autenticacion/login';
 
   constructor(private http: HttpClient) { }
@@ -62,7 +63,8 @@ export class SacwsService {
 
   getListServ(): Observable<Cliente[]> {
     const url = `${this.apiUrl}?ClienteId=294530`;
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkVERVF8RURFUVxcQUFSRElMQU18TzlBT1o1NUp8NDE1MTc3NjAiLCJuYmYiOjE3MjA2NDE1ODUsImV4cCI6MTcyMDY3NzU4NSwiaWF0IjoxNzIwNjQxNTg1LCJpc3MiOiJUZXN0Snd0IiwiYXVkIjoiVGVzdEp3dCJ9.dqGlQfygOBIWaiZBmQC1GxJT9Vpt72ND4k_q5qbmSpA';
+
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkVERVF8RURFUVxcTUFDRVZFUlV8WFFPTkJDTjJ8NDE1ODA3OTIiLCJuYmYiOjE3MjEyNDQwNDMsImV4cCI6MTcyMTI4MDA0MywiaWF0IjoxNzIxMjQ0MDQzLCJpc3MiOiJUZXN0Snd0IiwiYXVkIjoiVGVzdEp3dCJ9.mxMwixa17sNglr_OYCZB3eZPLQamD4hHAf49083AZc4';
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
@@ -70,13 +72,22 @@ export class SacwsService {
 
     return this.http.get<Cliente[]>(url, { headers });
   }
-
-
-
+//PRUEBAAAAA
+  getCliente(idCliente: string): Observable<any> {
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkVERVF8RURFUVxcTUFDRVZFUlV8MEdJQTQxMzR8NDE1ODExMTUiLCJuYmYiOjE3MjEyNDQ3MjUsImV4cCI6MTcyMTI4MDcyNSwiaWF0IjoxNzIxMjQ0NzI1LCJpc3MiOiJUZXN0Snd0IiwiYXVkIjoiVGVzdEp3dCJ9.DiwFVORHVIZ1cy9Er8UMq1r6Kb5W2wx-ppTupUQrUJw';
+    
+    const url = `${this.apiUrlIp}?ClienteId=${idCliente}`;   
+    console.log(url);
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get(url, { headers });
+  }
   // Endpoint URL
   getListServ2(idCliente: string): Observable<Cliente[]> {
+    console.log('Entro al servicio nuevo');
     const url2 = `https://10.46.4.44:4443/SACWS/api/Clientes?ClienteId=${idCliente}`;
-    const token = 'e2yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkVERVF8RURFUVxcQUFSRElMQU18N1VOSk1CTE98NDE1Njg4NzgiLCJuYmYiOjE3MjExNDMxMjIsImV4cCI6MTcyMTE3OTEyMiwiaWF0IjoxNzIxMTQzMTIyLCJpc3MiOiJUZXN0Snd0IiwiYXVkIjoiVGVzdEp3dCJ9.VTwkr9_d5t44tDqf5RCIgBhwTubnCInQ7u8rJz2P_VI';
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkVERVF8RURFUVxcTUFDRVZFUlV8MEdJQTQxMzR8NDE1ODExMTUiLCJuYmYiOjE3MjEyNDQ3MjUsImV4cCI6MTcyMTI4MDcyNSwiaWF0IjoxNzIxMjQ0NzI1LCJpc3MiOiJUZXN0Snd0IiwiYXVkIjoiVGVzdEp3dCJ9.DiwFVORHVIZ1cy9Er8UMq1r6Kb5W2wx-ppTupUQrUJw';
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
