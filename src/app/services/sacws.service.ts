@@ -72,6 +72,9 @@ export class SacwsService {
 
     return this.http.get<Cliente[]>(url, { headers });
   }
+
+
+  
 //PRUEBAAAAA
   getCliente(idCliente: string): Observable<any> {
     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkVERVF8RURFUVxcTUFDRVZFUlV8MEdJQTQxMzR8NDE1ODExMTUiLCJuYmYiOjE3MjEyNDQ3MjUsImV4cCI6MTcyMTI4MDcyNSwiaWF0IjoxNzIxMjQ0NzI1LCJpc3MiOiJUZXN0Snd0IiwiYXVkIjoiVGVzdEp3dCJ9.DiwFVORHVIZ1cy9Er8UMq1r6Kb5W2wx-ppTupUQrUJw';
@@ -83,6 +86,11 @@ export class SacwsService {
     });
     return this.http.get(url, { headers });
   }
+
+
+
+
+
   // Endpoint URL
   getListServ2(idCliente: string): Observable<Cliente[]> {
     console.log('Entro al servicio nuevo');
